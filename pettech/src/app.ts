@@ -7,8 +7,14 @@ import { globalErrorHandler } from './utils/global-error-handler';
 import { addressRoutes } from './http/controllers/address/routes';
 import { productRoutes } from './http/controllers/product/routes';
 import { categoryRoutes } from './http/controllers/category/route';
+import fastifyJwt from '@fastify/jwt';
+import { env } from './env';
 
 export const app = fastify();
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  sign: { expiresIn: '10m' },
+});
 
 app.register(personRoutes);
 app.register(userRoutes);
