@@ -6,7 +6,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
     name: z.string(),
     description: z.string(),
-    image_url: z.string(),
+    image: z.string(),
     price: z.coerce.number(),
     categories: z
       .array(
@@ -18,7 +18,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       .optional(),
   });
 
-  const { name, description, image_url, price, categories } =
+  const { name, description, image, price, categories } =
     registerBodySchema.parse(request.body);
 
   const createProductUseCase = makeCreateProductUseCase();
@@ -26,7 +26,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
   const product = await createProductUseCase.handler({
     name,
     description,
-    image_url,
+    image,
     price,
     categories,
   });

@@ -4,7 +4,7 @@ export interface IProduct {
   id?: string; // uuid
   name: string;
   description: string;
-  image_url: string;
+  image: string;
   price: number;
   categories?: ICategory[];
 }
