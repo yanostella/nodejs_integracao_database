@@ -4,7 +4,7 @@ import { IProductRepository } from '@/repositories/product.repository.interface'
 export class CreateProductUseCase {
   constructor(private productRepository: IProductRepository) {}
 
-  async handler(product: IProduct): Promise<IProduct | undefined> {
+  async handler(product: IProduct): Promise<IProduct> {
     return this.productRepository.create(product);
   }
 }
